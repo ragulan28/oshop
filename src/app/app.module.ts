@@ -6,7 +6,7 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {RouterModule} from '@angular/router';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {CustomFormsModule} from 'ng2-validation'
+import {CustomFormsModule} from 'ng2-validation';
 
 import {AppComponent} from './app.component';
 import {ProductFormComponent} from './admin/product-form/product-form.component';
@@ -30,71 +30,83 @@ import {ProductService} from "./product.service";
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ProductFormComponent,
-    BsNavbarComponent,
-    HomeComponent,
-    ProductsComponent,
-    ShoppingCartComponent,
-    CheckOutComponent,
-    OrderSuccessComponent,
-    MyOrdersComponent,
-    AdminProductsComponent,
-    LoginComponent,
-    AdminOrdersComponent
-  ],
-  imports: [
-    CustomFormsModule,
-    BrowserModule,
-    FormsModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
-    AngularFireAuthModule,
-    NgbModule.forRoot(),
-    RouterModule.forRoot([
-        {path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuardService]},
-        {path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuardService]},
-        {path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuardService]},
-        {path: 'shopping-cart', component: ShoppingCartComponent},
+            declarations: [
+              AppComponent,
+              ProductFormComponent,
+              BsNavbarComponent,
+              HomeComponent,
+              ProductsComponent,
+              ShoppingCartComponent,
+              CheckOutComponent,
+              OrderSuccessComponent,
+              MyOrdersComponent,
+              AdminProductsComponent,
+              LoginComponent,
+              AdminOrdersComponent
+            ],
+            imports: [
+              CustomFormsModule,
+              BrowserModule,
+              FormsModule,
+              // DataTableModule,
+              AngularFireModule.initializeApp(environment.firebase),
+              AngularFireDatabaseModule,
+              AngularFireAuthModule,
+              NgbModule.forRoot(),
+              RouterModule.forRoot([
+                                     {path: '', component: ProductsComponent},
+                                     {path: 'shopping-cart', component: ShoppingCartComponent},
+                                     {path: 'products', component: ProductsComponent},
+                                     {path: 'login', component: LoginComponent},
+                                     {
+                                       path: 'check-out',
+                                       component: CheckOutComponent,
+                                       canActivate: [AuthGuardService]
+                                     },
+                                     {
+                                       path: 'order-success',
+                                       component: OrderSuccessComponent,
+                                       canActivate: [AuthGuardService]
+                                     },
+                                     {
+                                       path: 'my/orders',
+                                       component: MyOrdersComponent,
+                                       canActivate: [AuthGuardService]
+                                     },
 
-        {path: '', component: HomeComponent},
-        {path: 'products', component: ProductsComponent},
-        {path: 'login', component: LoginComponent},
 
-
-        {
-          path: 'admin/products/new',
-          component: ProductFormComponent,
-          canActivate: [AuthGuardService, AdminAuthGuardService]
-        },
-        {
-          path: 'admin/products/:id',
-          component: ProductFormComponent,
-          canActivate: [AuthGuardService, AdminAuthGuardService]
-        },
-        {
-          path: 'admin/products',
-          component: AdminProductsComponent,
-          canActivate: [AuthGuardService, AdminAuthGuardService]
-        },
-        {
-          path: 'admin/orders',
-          component: AdminOrdersComponent,
-          canActivate: [AuthGuardService, AdminAuthGuardService]
-        }
-      ]
-    )
-  ],
-  providers: [
-    AuthService,
-    AuthGuardService,
-    UserService,
-    AdminAuthGuardService,
-    CategoryService,
-    ProductService
-  ],
-  bootstrap: [AppComponent]
-})
+                                     {
+                                       path: 'admin/products/new',
+                                       component: ProductFormComponent,
+                                       canActivate: [AuthGuardService, AdminAuthGuardService]
+                                     },
+                                     {
+                                       path: 'admin/products/:id',
+                                       component: ProductFormComponent,
+                                       canActivate: [AuthGuardService, AdminAuthGuardService]
+                                     },
+                                     {
+                                       path: 'admin/products',
+                                       component: AdminProductsComponent,
+                                       canActivate: [AuthGuardService, AdminAuthGuardService]
+                                     },
+                                     {
+                                       path: 'admin/orders',
+                                       component: AdminOrdersComponent,
+                                       canActivate: [AuthGuardService, AdminAuthGuardService]
+                                     }
+                                   ]
+              )
+            ],
+            providers: [
+              AuthService,
+              AuthGuardService,
+              UserService,
+              AdminAuthGuardService,
+              CategoryService,
+              ProductService
+            ],
+            bootstrap: [AppComponent]
+          })
 export class AppModule {
 }
