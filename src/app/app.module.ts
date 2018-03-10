@@ -6,6 +6,7 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {RouterModule} from '@angular/router';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { CustomFormsModule } from 'ng2-validation'
 
 import {AppComponent} from './app.component';
 import {ProductFormComponent} from './admin/product-form/product-form.component';
@@ -28,6 +29,7 @@ import {FormsModule} from "@angular/forms";
 import {ProductService} from "./product.service";
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +46,7 @@ import {ProductService} from "./product.service";
     AdminOrdersComponent
   ],
   imports: [
+    CustomFormsModule,
     BrowserModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
