@@ -13,7 +13,7 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/shopping-cart">
           Shopping Cart
-          <span class="badge badge-warning badge-pill">{{shoppingCardItemCount}}</span>
+          <span class="badge badge-warning badge-pill" *ngIf="cart$ | async as cart">{{cart.totalItemsCount}}</span>
         </a>
       </li>
       <ng-template #anonymousUser>
@@ -34,6 +34,7 @@
           <a class="dropdown-item" (click)="logout()">Log Out</a>
         </div>
       </li>
+    
     </ul>
   </div>
 </nav>
